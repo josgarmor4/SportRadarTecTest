@@ -1,5 +1,7 @@
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using WorldCupScoreBoardLibrary;
 
 namespace WorldCupScoreBoardTests
@@ -104,6 +106,38 @@ namespace WorldCupScoreBoardTests
             string sumarry = wcsb.getSummary();
 
             Assert.That(sumarry, Is.EqualTo(matchSummary));
+        }
+
+        [Test]
+        public void GetSummaryOfGamesOrderByTotalScoreIfEqualScoreOrderByMostRecently()
+        {
+            CreateMatches();
+            string summaryMatches = wcsb.getSummary();
+            string correctOrderSummary = "Uruguay 6 - Italy 6";
+            correctOrderSummary += "Spain 10 - Brazil 2";
+            correctOrderSummary += "Mexico 0 - Canada 5";
+            correctOrderSummary += "Argentina 3 - Australia 1";
+            correctOrderSummary += "Germany 2 - France 2";
+
+            Assert.That(summaryMatches, Is.EqualTo(correctOrderSummary));
+        }
+
+        private void CreateMatches()
+        {
+            int matchId = wcsb.startMatch("Mexico", "Canada");
+            wcsb.updateMatch(matchId, 0, 5);
+
+            matchId = wcsb.startMatch("Spain", "Brazil");
+            wcsb.updateMatch(matchId, 10, 2);
+
+            matchId = wcsb.startMatch("Germany", "France");
+            wcsb.updateMatch(matchId, 2, 2);
+
+            matchId = wcsb.startMatch("Uruguay", "Italy");
+            wcsb.updateMatch(matchId, 6, 6);
+
+            matchId = wcsb.startMatch("Argentina", "Australia");
+            wcsb.updateMatch(matchId, 3, 1);
         }
     }
 }

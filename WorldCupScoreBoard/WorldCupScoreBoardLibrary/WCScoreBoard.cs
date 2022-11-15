@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace WorldCupScoreBoardLibrary
 {
     public class WCScoreBoard
     {
         public Dictionary<int, Match> matchesDictionary { get; set; }
-        private int matchId { get; set; }
+        private int matchId;
 
         public WCScoreBoard()
         {
@@ -65,7 +65,13 @@ namespace WorldCupScoreBoardLibrary
 
         public string getSummary()
         {
-            throw new NotImplementedException();
+            string matchesSummary = "";
+            List<Match> matches = matchesDictionary.Values.ToList();
+            foreach (Match match in matches)
+            {
+                matchesSummary += match.toString();
+            }
+            return matchesSummary;
         }
     }
 }

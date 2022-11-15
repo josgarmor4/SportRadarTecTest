@@ -6,7 +6,7 @@ namespace WorldCupScoreBoardTests
 {
     public class WCScoreBoardTests
     {
-        public WCScoreBoard wcsb {get;set;}
+        public WCScoreBoard wcsb { get; set; }
 
         [SetUp]
         public void Setup()
@@ -17,20 +17,20 @@ namespace WorldCupScoreBoardTests
 
         [Test]
         public void CanStartAMatch()
-        {                  
+        {
             // act
-            int matchId = wcsb.startMatch("Mexico","Canada");
-            
+            int matchId = wcsb.startMatch("Mexico", "Canada");
+
             // assert
-            Assert.That(matchId, Is.Positive);            
+            Assert.That(matchId, Is.Positive);
         }
-          
+
         [Test]
-        [TestCase("Mexico","")]
+        [TestCase("Mexico", "")]
         [TestCase("", "Canada")]
         [TestCase("", "")]
         public void StartMatchWithAnyTeamNameEmptyTrhowException(string homeTeam, string awayTeam)
-        {            
+        {
             // assert
             Assert.Throws<ArgumentOutOfRangeException>(() => wcsb.startMatch(homeTeam, awayTeam));
         }
@@ -46,7 +46,7 @@ namespace WorldCupScoreBoardTests
             Assert.True(!wcsb.matchesDictionary.ContainsKey(matchId));
         }
 
-        [Test]        
+        [Test]
         public void FinishMatchWithInvalidIdTrhowException()
         {
             // assert
@@ -87,13 +87,23 @@ namespace WorldCupScoreBoardTests
             Assert.Throws<ArgumentOutOfRangeException>(() => wcsb.updateMatch(matchId, homeTeamScore, awayTeamScore));
         }
 
-        [Test]        
+        [Test]
         public void UpdateMatchIfNoExitsTrhowException()
-        {            
+        {
             // assert
             Assert.Throws<ArgumentException>(() => wcsb.updateMatch(25, 2, 3));
         }
-        
 
+        [Test]
+        public void GetSummaryOfGames()
+        {
+            int matchId = wcsb.startMatch("Mexico", "Canada");
+            Match match;
+            wcsb.matchesDictionary.TryGetValue(matchId, out match);
+            string matchSummary = match.toString();
+            string sumarry = wcsb.getSummary();
+
+            Assert.That(sumarry, Is.EqualTo(matchSummary));
+        }
     }
 }

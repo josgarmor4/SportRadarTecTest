@@ -62,5 +62,10 @@ namespace WorldCupScoreBoardLibrary
             matchToUpdate.HomeTeamScore = homeScore;
             matchToUpdate.AwayTeamScore = awayScore;
         }
+
+        public string getSummary()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

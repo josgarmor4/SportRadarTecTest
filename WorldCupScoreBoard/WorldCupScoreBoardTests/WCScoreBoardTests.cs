@@ -53,5 +53,15 @@ namespace WorldCupScoreBoardTests
             Assert.Throws<ArgumentException>(() => wcsb.finishMatch(10));
         }
 
+        [Test]
+        public void CanUpdateMatch()
+        {
+            // act
+            int matchId = wcsb.startMatch("Mexico", "Canada");
+            wcsb.updateMatch(matchId, 1, 1);
+            // assert
+            Assert.Throws<ArgumentException>(() => wcsb.finishMatch(10));
+        }
+
     }
 }

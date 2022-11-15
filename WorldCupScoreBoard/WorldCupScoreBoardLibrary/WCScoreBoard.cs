@@ -46,5 +46,10 @@ namespace WorldCupScoreBoardLibrary
             }
                                 
         }
+
+        public void updateMatch(int matchId, int v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

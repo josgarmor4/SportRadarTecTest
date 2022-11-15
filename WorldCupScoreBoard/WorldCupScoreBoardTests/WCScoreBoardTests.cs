@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using WorldCupScoreBoardLibrary;
 
 namespace WorldCupScoreBoardTests
 {
@@ -10,9 +11,12 @@ namespace WorldCupScoreBoardTests
         }
 
         [Test]
-        public void Test1()
+        public void CanStartAMatch()
         {
-            Assert.Pass();
+            WCScoreBoard wcsb = new WCScoreBoard();           
+            int matchId = wcsb.startMatch("Mexico","Canada");
+            Assert.That(matchId, Is.Positive);            
         }
+       
     }
 }

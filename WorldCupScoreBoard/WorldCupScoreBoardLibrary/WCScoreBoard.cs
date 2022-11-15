@@ -8,5 +8,18 @@ namespace WorldCupScoreBoardLibrary
 {
     public class WCScoreBoard
     {
+        private Dictionary<int, string> matchesDictionary { get; set; }
+        private int matchId { get; set; }
+
+        public WCScoreBoard()
+        {
+            matchesDictionary = new Dictionary<int, string>();
+            matchId += 1;
+        }
+
+        public int startMatch(string homeTeam, string awayTeam)
+        {
+            return -1;
+        }
     }
 }

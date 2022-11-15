@@ -20,7 +20,7 @@ namespace WorldCupScoreBoardLibrary
             Match match;
             try
             {
-                match = new Match(homeTeam, awayTeam, 0, 0);
+                match = new Match(homeTeam, awayTeam);
                 matchId++;
                 matchesDictionary.Add(matchId, match);
 

@@ -13,7 +13,7 @@ namespace WorldCupScoreBoardLibrary
         public int HomeTeamScore { get; set; }
         public int AwayTeamScore { get; set; }
         
-        public Match(string homeTeamName, string awayTeamName, int homeTeamScore, int awayTeamScore)
+        public Match(string homeTeamName, string awayTeamName)
         {
             if (string.IsNullOrEmpty(homeTeamName) || string.IsNullOrEmpty(awayTeamName))
             {
@@ -23,8 +23,8 @@ namespace WorldCupScoreBoardLibrary
             {
                 HomeTeamName = homeTeamName;
                 AwayTeamName = awayTeamName;
-                HomeTeamScore = homeTeamScore;
-                AwayTeamScore = awayTeamScore;
+                HomeTeamScore = 0;
+                AwayTeamScore = 0;
             }
         }
 

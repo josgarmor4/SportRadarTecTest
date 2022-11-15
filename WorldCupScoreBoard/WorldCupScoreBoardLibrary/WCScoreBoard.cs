@@ -14,12 +14,15 @@ namespace WorldCupScoreBoardLibrary
         public WCScoreBoard()
         {
             matchesDictionary = new Dictionary<int, string>();
-            matchId += 1;
+            matchId = 0;
         }
 
         public int startMatch(string homeTeam, string awayTeam)
         {
-            return -1;
+            string match = $"{homeTeam} - {awayTeam} : 0 - 5";
+            matchId++;
+            matchesDictionary.Add(matchId, match);
+            return matchId;
         }
     }
 }

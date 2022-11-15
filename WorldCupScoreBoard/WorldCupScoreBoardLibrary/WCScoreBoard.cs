@@ -34,12 +34,17 @@ namespace WorldCupScoreBoardLibrary
 
         public void finishMatch(int matchId)
         {
-            bool isRemove = matchesDictionary.Remove(matchId);
-            
-            if(!isRemove)
+            Match match;
+            matchesDictionary.TryGetValue(matchId, out match);
+            if (match != null)
+            {
+                matchesDictionary.Remove(matchId);
+            }
+            else
             {
                 throw new ArgumentException("La id proporcionada no existe");
-            }                        
+            }
+                                
         }
     }
 }

@@ -15,10 +15,17 @@ namespace WorldCupScoreBoardLibrary
         
         public Match(string homeTeamName, string awayTeamName, int homeTeamScore, int awayTeamScore)
         {
-            HomeTeamName = homeTeamName;
-            AwayTeamName = awayTeamName;
-            HomeTeamScore = homeTeamScore;
-            AwayTeamScore = awayTeamScore;
+            if (string.IsNullOrEmpty(homeTeamName) || string.IsNullOrEmpty(awayTeamName))
+            {
+                throw new ArgumentOutOfRangeException("Teams names could not be empty");
+            }
+            else
+            {
+                HomeTeamName = homeTeamName;
+                AwayTeamName = awayTeamName;
+                HomeTeamScore = homeTeamScore;
+                AwayTeamScore = awayTeamScore;
+            }
         }
 
         public string toString()

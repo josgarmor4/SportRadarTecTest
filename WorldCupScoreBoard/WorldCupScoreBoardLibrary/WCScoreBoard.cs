@@ -31,5 +31,10 @@ namespace WorldCupScoreBoardLibrary
             }
             return matchId;
         }
+
+        public void finishMatch(int matchId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

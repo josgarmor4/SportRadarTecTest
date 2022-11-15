@@ -34,5 +34,16 @@ namespace WorldCupScoreBoardTests
             // assert
             Assert.Throws<ArgumentOutOfRangeException>(() => wcsb.startMatch(homeTeam, awayTeam));
         }
+
+        [Test]
+        public void CanFinishAMatch()
+        {
+            // act
+            int matchId = wcsb.startMatch("Mexico", "Canada");
+            wcsb.finishMatch(matchId);
+
+            // assert
+            Assert.True(!wcsb.matchesDictionary.ContainsKey(matchId));
+        }
     }
 }

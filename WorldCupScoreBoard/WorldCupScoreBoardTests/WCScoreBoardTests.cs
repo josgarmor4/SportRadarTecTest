@@ -45,5 +45,13 @@ namespace WorldCupScoreBoardTests
             // assert
             Assert.True(!wcsb.matchesDictionary.ContainsKey(matchId));
         }
+
+        [Test]        
+        public void FinishMatchWithInvalidIdTrhowException()
+        {
+            // assert
+            Assert.Throws<ArgumentException>(() => wcsb.finishMatch(10));
+        }
+
     }
 }

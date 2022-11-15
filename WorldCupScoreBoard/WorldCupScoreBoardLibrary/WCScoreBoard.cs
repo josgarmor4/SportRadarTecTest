@@ -34,7 +34,7 @@ namespace WorldCupScoreBoardLibrary
 
         public void finishMatch(int matchId)
         {
-            throw new NotImplementedException();
+            matchesDictionary.Remove(matchId);
         }
     }
 }

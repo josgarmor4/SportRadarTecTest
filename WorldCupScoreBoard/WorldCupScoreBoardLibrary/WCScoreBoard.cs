@@ -42,7 +42,7 @@ namespace WorldCupScoreBoardLibrary
             }
             else
             {
-                throw new ArgumentException("La id proporcionada no existe");
+                throw new ArgumentException("Id don't exists");
             }
                                 
         }
@@ -51,6 +51,14 @@ namespace WorldCupScoreBoardLibrary
         {
             Match matchToUpdate;
             matchesDictionary.TryGetValue(matchId, out matchToUpdate);
+            if (matchToUpdate == null)
+            {
+                throw new ArgumentException("Match don't exits");
+            }
+            if(homeScore < 0 || awayScore < 0)
+            {
+                throw new ArgumentOutOfRangeException("Match score can't be negative");
+            }
             matchToUpdate.HomeTeamScore = homeScore;
             matchToUpdate.AwayTeamScore = awayScore;
         }

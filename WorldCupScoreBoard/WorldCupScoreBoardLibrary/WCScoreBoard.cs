@@ -47,9 +47,12 @@ namespace WorldCupScoreBoardLibrary
                                 
         }
 
-        public void updateMatch(int matchId, int v1, int v2)
+        public void updateMatch(int matchId, int homeScore, int awayScore)
         {
-            throw new NotImplementedException();
+            Match matchToUpdate;
+            matchesDictionary.TryGetValue(matchId, out matchToUpdate);
+            matchToUpdate.HomeTeamScore = homeScore;
+            matchToUpdate.AwayTeamScore = awayScore;
         }
     }
 }

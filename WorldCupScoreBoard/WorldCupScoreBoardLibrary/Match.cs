@@ -12,8 +12,7 @@ namespace WorldCupScoreBoardLibrary
         public string AwayTeamName { get; set; }
         public int HomeTeamScore { get; set; }
         public int AwayTeamScore { get; set; }
-
-        public Match() { }
+        
         public Match(string homeTeamName, string awayTeamName, int homeTeamScore, int awayTeamScore)
         {
             HomeTeamName = homeTeamName;

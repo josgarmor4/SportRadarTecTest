@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WorldCupScoreBoardLibrary.Interfaces;
 
 namespace WorldCupScoreBoardLibrary
 {
-    public class WCScoreBoard
+    public class WCScoreBoard : IWCScoreBoard
     {
         private Dictionary<int, Match> matchesDictionary;
         private int matchId;
@@ -44,7 +45,7 @@ namespace WorldCupScoreBoardLibrary
 
             else
             {
-                throw new ArgumentException("Id don't exists");
+                throw new ArgumentException(WCScoreBoardConstansts.ExceptionsMessage.MatchIdNotExists);
             }
         }
 
@@ -55,12 +56,12 @@ namespace WorldCupScoreBoardLibrary
 
             if (matchToUpdate == null)
             {
-                throw new ArgumentException("Match don't exits");
+                throw new ArgumentException(WCScoreBoardConstansts.ExceptionsMessage.MatchNotExists);
             }
 
             if (homeScore < 0 || awayScore < 0)
             {
-                throw new ArgumentOutOfRangeException("Match score can't be negative");
+                throw new ArgumentOutOfRangeException(WCScoreBoardConstansts.ExceptionsMessage.ScoreCantBeNegative);
             }
             
             matchToUpdate.HomeTeamScore = homeScore;
@@ -70,19 +71,19 @@ namespace WorldCupScoreBoardLibrary
         public string getSummary()
         {
             string matchesSummary = "";
-            
+
             List<Match> matches = matchesDictionary.OrderByDescending(O => O.Value.HomeTeamScore + O.Value.AwayTeamScore)
                              .ThenByDescending(THO => THO.Key)
                              .ToDictionary(x => x.Key, x => x.Value)
                              .Values
                              .ToList();
 
-            
+
             foreach (Match match in matches)
             {
                 matchesSummary += match.toString();
             }
-            
+
             return matchesSummary;
         }
 
@@ -92,10 +93,10 @@ namespace WorldCupScoreBoardLibrary
             
             if (!matchesDictionary.TryGetValue(matchId, out match))
             {
-                throw new ArgumentOutOfRangeException("Match id don't exists");
+                throw new ArgumentOutOfRangeException(WCScoreBoardConstansts.ExceptionsMessage.MatchIdNotExists);
             }
             
             return match;
-        }
+        }          
     }
 }

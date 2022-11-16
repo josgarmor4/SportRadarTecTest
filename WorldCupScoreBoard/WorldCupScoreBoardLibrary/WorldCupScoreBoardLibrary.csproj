@@ -41,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IWCScoreBoard.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="WCScoreBoard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Constants\WCScoreBoardConstansts.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Doc\Coding Exercise v1.2 Backend.pdf" />

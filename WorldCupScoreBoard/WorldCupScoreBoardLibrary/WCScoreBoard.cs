@@ -9,14 +9,14 @@ namespace WorldCupScoreBoardLibrary
     {
         private Dictionary<int, Match> matchesDictionary;
         private int matchId;
-
+       
         public WCScoreBoard()
         {
             matchesDictionary = new Dictionary<int, Match>();
             matchId = 0;
         }
 
-        public int startMatch(string homeTeam, string awayTeam)
+        public int StartMatch(string homeTeam, string awayTeam)
         {
             Match match;
 
@@ -36,7 +36,7 @@ namespace WorldCupScoreBoardLibrary
             return matchId;
         }
 
-        public void finishMatch(int matchId)
+        public void FinishMatch(int matchId)
         {            
             if (matchesDictionary.ContainsKey(matchId))
             {
@@ -49,7 +49,7 @@ namespace WorldCupScoreBoardLibrary
             }
         }
 
-        public void updateMatch(int matchId, int homeScore, int awayScore)
+        public void UpdateMatch(int matchId, int homeScore, int awayScore)
         {
             Match matchToUpdate;
             matchesDictionary.TryGetValue(matchId, out matchToUpdate);
@@ -68,7 +68,7 @@ namespace WorldCupScoreBoardLibrary
             matchToUpdate.AwayTeamScore = awayScore;
         }
 
-        public string getSummary()
+        public string GetSummary()
         {
             string matchesSummary = "";
 
@@ -87,7 +87,7 @@ namespace WorldCupScoreBoardLibrary
             return matchesSummary;
         }
 
-        public Match getMatchFromId(int matchId)
+        public Match GetMatchFromId(int matchId)
         {
             Match match;
             

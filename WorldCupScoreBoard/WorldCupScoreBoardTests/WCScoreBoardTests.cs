@@ -17,7 +17,7 @@ namespace WorldCupScoreBoardTests
         [Test]
         public void CanStartAMatch()
         {            
-            int matchId = wcsb.startMatch(WCScoreBoardConstansts.
+            int matchId = wcsb.StartMatch(WCScoreBoardConstansts.
                                            TestExamplesConstants.HomeTeamName, WCScoreBoardConstansts.
                                            TestExamplesConstants.AwayTeamName);
             
@@ -30,35 +30,35 @@ namespace WorldCupScoreBoardTests
         [TestCase("", "")]
         public void StartMatchWithAnyTeamNameEmptyTrhowException(string homeTeam, string awayTeam)
         {            
-            Assert.Throws<ArgumentOutOfRangeException>(() => wcsb.startMatch(homeTeam, awayTeam));
+            Assert.Throws<ArgumentOutOfRangeException>(() => wcsb.StartMatch(homeTeam, awayTeam));
         }
 
         [Test]
         public void CanFinishAMatch()
         {            
-            int matchId = wcsb.startMatch(WCScoreBoardConstansts.
+            int matchId = wcsb.StartMatch(WCScoreBoardConstansts.
                                            TestExamplesConstants.HomeTeamName, WCScoreBoardConstansts.
                                            TestExamplesConstants.AwayTeamName);
 
-            wcsb.finishMatch(matchId);
+            wcsb.FinishMatch(matchId);
            
-            Assert.Throws<ArgumentOutOfRangeException>(() => wcsb.getMatchFromId(matchId));            
+            Assert.Throws<ArgumentOutOfRangeException>(() => wcsb.GetMatchFromId(matchId));            
         }
 
         [Test]
         public void FinishMatchWithInvalidIdTrhowException()
         {            
-            Assert.Throws<ArgumentException>(() => wcsb.finishMatch(10));
+            Assert.Throws<ArgumentException>(() => wcsb.FinishMatch(10));
         }
 
         [Test]
         public void CanUpdateMatch()
         {            
-            int matchId = wcsb.startMatch(WCScoreBoardConstansts.
+            int matchId = wcsb.StartMatch(WCScoreBoardConstansts.
                                            TestExamplesConstants.HomeTeamName, WCScoreBoardConstansts.
                                            TestExamplesConstants.AwayTeamName);
 
-            wcsb.updateMatch(matchId, 1, 1);
+            wcsb.UpdateMatch(matchId, 1, 1);
             
             Assert.Pass();
         }
@@ -67,12 +67,12 @@ namespace WorldCupScoreBoardTests
         [TestCase(1, 0)]
         public void CheckUpdateMatchIsCorrect(int homeTeamScore, int awayTeamScore)
         {            
-            int matchId = wcsb.startMatch(WCScoreBoardConstansts.
+            int matchId = wcsb.StartMatch(WCScoreBoardConstansts.
                                            TestExamplesConstants.HomeTeamName, WCScoreBoardConstansts.
                                            TestExamplesConstants.AwayTeamName);
 
-            wcsb.updateMatch(matchId, homeTeamScore, awayTeamScore);
-            Match matchToCheck = wcsb.getMatchFromId(matchId);
+            wcsb.UpdateMatch(matchId, homeTeamScore, awayTeamScore);
+            Match matchToCheck = wcsb.GetMatchFromId(matchId);
                         
             Assert.That(homeTeamScore, Is.EqualTo(matchToCheck.HomeTeamScore));
             Assert.That(awayTeamScore, Is.EqualTo(matchToCheck.AwayTeamScore));
@@ -84,30 +84,30 @@ namespace WorldCupScoreBoardTests
         [TestCase(-3, -2)]
         public void UpdateMatchWithAnyTeamScoreNegativeTrhowException(int homeTeamScore, int awayTeamScore)
         {            
-            int matchId = wcsb.startMatch(WCScoreBoardConstansts.
+            int matchId = wcsb.StartMatch(WCScoreBoardConstansts.
                                            TestExamplesConstants.HomeTeamName, WCScoreBoardConstansts.
                                            TestExamplesConstants.AwayTeamName);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => wcsb.updateMatch(matchId, homeTeamScore, awayTeamScore));
+            Assert.Throws<ArgumentOutOfRangeException>(() => wcsb.UpdateMatch(matchId, homeTeamScore, awayTeamScore));
         }
 
         [Test]
         public void UpdateMatchIfNoExitsTrhowException()
         {            
-            Assert.Throws<ArgumentException>(() => wcsb.updateMatch(25, 2, 3));
+            Assert.Throws<ArgumentException>(() => wcsb.UpdateMatch(25, 2, 3));
         }
 
         [Test]
         public void GetSummaryOfGames()
         {            
-            int matchId = wcsb.startMatch(WCScoreBoardConstansts.
+            int matchId = wcsb.StartMatch(WCScoreBoardConstansts.
                                            TestExamplesConstants.HomeTeamName, WCScoreBoardConstansts.
                                            TestExamplesConstants.AwayTeamName);
 
             string correctSummary = WCScoreBoardConstansts.
                                            TestExamplesConstants.CorrectSumary;
 
-            string sumary = wcsb.getSummary();
+            string sumary = wcsb.GetSummary();
             
             Assert.That(sumary, Is.EqualTo(correctSummary));
         }
@@ -116,7 +116,7 @@ namespace WorldCupScoreBoardTests
         public void GetSummaryOfGamesOrderByTotalScoreIfEqualScoreOrderByMostRecently()
         {            
             CreateMatches();
-            string summaryMatches = wcsb.getSummary();           
+            string summaryMatches = wcsb.GetSummary();           
             
             Assert.That(summaryMatches, Is.EqualTo(WCScoreBoardConstansts.TestExamplesConstants.correctOrderSummary));
         }
@@ -124,9 +124,9 @@ namespace WorldCupScoreBoardTests
         [Test]
         public void CanGetMatchFromId()
         {            
-            int matchId = wcsb.startMatch(WCScoreBoardConstansts.TestExamplesConstants.HomeTeamName,
+            int matchId = wcsb.StartMatch(WCScoreBoardConstansts.TestExamplesConstants.HomeTeamName,
                                           WCScoreBoardConstansts.TestExamplesConstants.AwayTeamName);
-            Match matchObtained = wcsb.getMatchFromId(matchId);
+            Match matchObtained = wcsb.GetMatchFromId(matchId);
                         
             Assert.That(matchObtained, Is.Not.Null);
             Assert.That(matchObtained.HomeTeamName, Is.EqualTo(WCScoreBoardConstansts.TestExamplesConstants.HomeTeamName));
@@ -136,26 +136,26 @@ namespace WorldCupScoreBoardTests
         [TestCase(10)]
         public void CanGetMathFromIdReturnExceptionIfIdNotExists(int matchId)
         {            
-            Assert.Throws<ArgumentOutOfRangeException>(() => wcsb.getMatchFromId(matchId));
+            Assert.Throws<ArgumentOutOfRangeException>(() => wcsb.GetMatchFromId(matchId));
         }
 
         #region Help methods
         private void CreateMatches()
         {
-            int matchId = wcsb.startMatch("Mexico", "Canada");
-            wcsb.updateMatch(matchId, 0, 5);
+            int matchId = wcsb.StartMatch("Mexico", "Canada");
+            wcsb.UpdateMatch(matchId, 0, 5);
 
-            matchId = wcsb.startMatch("Spain", "Brazil");
-            wcsb.updateMatch(matchId, 10, 2);
+            matchId = wcsb.StartMatch("Spain", "Brazil");
+            wcsb.UpdateMatch(matchId, 10, 2);
 
-            matchId = wcsb.startMatch("Germany", "France");
-            wcsb.updateMatch(matchId, 2, 2);
+            matchId = wcsb.StartMatch("Germany", "France");
+            wcsb.UpdateMatch(matchId, 2, 2);
 
-            matchId = wcsb.startMatch("Uruguay", "Italy");
-            wcsb.updateMatch(matchId, 6, 6);
+            matchId = wcsb.StartMatch("Uruguay", "Italy");
+            wcsb.UpdateMatch(matchId, 6, 6);
 
-            matchId = wcsb.startMatch("Argentina", "Australia");
-            wcsb.updateMatch(matchId, 3, 1);
+            matchId = wcsb.StartMatch("Argentina", "Australia");
+            wcsb.UpdateMatch(matchId, 3, 1);
         }
         #endregion
     }

@@ -8,10 +8,10 @@ namespace WorldCupScoreBoardLibrary.Interfaces
 {
     public interface IWCScoreBoard
     {
-        int startMatch(string homeTeam, string awayTeam);
-        void finishMatch(int matchId);
-        void updateMatch(int matchId, int homeScore, int awayScore);
-        string getSummary();
-        Match getMatchFromId(int matchId);
+        int StartMatch(string homeTeam, string awayTeam);
+        void FinishMatch(int matchId);
+        void UpdateMatch(int matchId, int homeScore, int awayScore);
+        string GetSummary();
+        Match GetMatchFromId(int matchId);
     }
 }

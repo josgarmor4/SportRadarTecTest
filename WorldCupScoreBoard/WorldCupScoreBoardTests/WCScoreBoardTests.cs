@@ -100,12 +100,10 @@ namespace WorldCupScoreBoardTests
         public void GetSummaryOfGames()
         {
             int matchId = wcsb.startMatch("Mexico", "Canada");
-            Match match;
-            wcsb.matchesDictionary.TryGetValue(matchId, out match);
-            string matchSummary = match.toString();
+            string correctSummary = "Mexico 0 - Canada 0 \r\n";            
             string sumarry = wcsb.getSummary();
 
-            Assert.That(sumarry, Is.EqualTo(matchSummary));
+            Assert.That(sumarry, Is.EqualTo(correctSummary));
         }
 
         [Test]
@@ -113,11 +111,11 @@ namespace WorldCupScoreBoardTests
         {
             CreateMatches();
             string summaryMatches = wcsb.getSummary();
-            string correctOrderSummary = "Uruguay 6 - Italy 6";
-            correctOrderSummary += "Spain 10 - Brazil 2";
-            correctOrderSummary += "Mexico 0 - Canada 5";
-            correctOrderSummary += "Argentina 3 - Australia 1";
-            correctOrderSummary += "Germany 2 - France 2";
+            string correctOrderSummary = "Uruguay 6 - Italy 6 \r\n";
+            correctOrderSummary += "Spain 10 - Brazil 2 \r\n";
+            correctOrderSummary += "Mexico 0 - Canada 5 \r\n";
+            correctOrderSummary += "Argentina 3 - Australia 1 \r\n";
+            correctOrderSummary += "Germany 2 - France 2 \r\n";
 
             Assert.That(summaryMatches, Is.EqualTo(correctOrderSummary));
         }

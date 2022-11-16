@@ -66,7 +66,12 @@ namespace WorldCupScoreBoardLibrary
         public string getSummary()
         {
             string matchesSummary = "";
-            List<Match> matches = matchesDictionary.Values.ToList();
+            List<Match> matches = matchesDictionary.OrderByDescending(O => O.Value.HomeTeamScore + O.Value.AwayTeamScore)
+                             .ThenByDescending(THO => THO.Key)
+                             .ToDictionary(x => x.Key, x=> x.Value)
+                             .Values
+                             .ToList();
+            
             foreach (Match match in matches)
             {
                 matchesSummary += match.toString();

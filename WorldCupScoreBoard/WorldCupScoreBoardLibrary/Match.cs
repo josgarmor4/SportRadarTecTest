@@ -30,7 +30,7 @@ namespace WorldCupScoreBoardLibrary
 
         public string toString()
         {
-            string sumaryMatch = $"{HomeTeamName} - {AwayTeamName}: {HomeTeamScore} - {AwayTeamScore}";
+            string sumaryMatch = $"{HomeTeamName} {HomeTeamScore} - {AwayTeamName} {AwayTeamScore} \r\n";
             return sumaryMatch;
         }
     }

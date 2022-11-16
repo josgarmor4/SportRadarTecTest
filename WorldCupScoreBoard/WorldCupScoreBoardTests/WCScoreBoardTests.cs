@@ -45,7 +45,7 @@ namespace WorldCupScoreBoardTests
             wcsb.finishMatch(matchId);
 
             // assert
-            Assert.True(!wcsb.matchesDictionary.ContainsKey(matchId));
+            Assert.Throws<ArgumentOutOfRangeException>(() => wcsb.getMatchFromId(matchId));            
         }
 
         [Test]
@@ -61,6 +61,7 @@ namespace WorldCupScoreBoardTests
             // act
             int matchId = wcsb.startMatch("Mexico", "Canada");
             wcsb.updateMatch(matchId, 1, 1);
+
             // assert
             Assert.Pass();
         }
@@ -69,10 +70,11 @@ namespace WorldCupScoreBoardTests
         [TestCase(1, 0)]
         public void CheckUpdateMatchIsCorrect(int homeTeamScore, int awayTeamScore)
         {
+            // act
             int matchId = wcsb.startMatch("Mexico", "Canada");
             wcsb.updateMatch(matchId, homeTeamScore, awayTeamScore);
-            Match matchToCheck;
-            wcsb.matchesDictionary.TryGetValue(matchId, out matchToCheck);
+            Match matchToCheck = wcsb.getMatchFromId(matchId);
+            
             // assert
             Assert.That(homeTeamScore, Is.EqualTo(matchToCheck.HomeTeamScore));
             Assert.That(awayTeamScore, Is.EqualTo(matchToCheck.AwayTeamScore));
@@ -84,7 +86,9 @@ namespace WorldCupScoreBoardTests
         [TestCase(-3, -2)]
         public void UpdateMatchWithAnyTeamScoreNegativeTrhowException(int homeTeamScore, int awayTeamScore)
         {
+            // act
             int matchId = wcsb.startMatch("Mexico", "Canada");
+            
             // assert
             Assert.Throws<ArgumentOutOfRangeException>(() => wcsb.updateMatch(matchId, homeTeamScore, awayTeamScore));
         }
@@ -99,16 +103,19 @@ namespace WorldCupScoreBoardTests
         [Test]
         public void GetSummaryOfGames()
         {
+            // act
             int matchId = wcsb.startMatch("Mexico", "Canada");
             string correctSummary = "Mexico 0 - Canada 0 \r\n";
-            string sumarry = wcsb.getSummary();
+            string sumary = wcsb.getSummary();
 
-            Assert.That(sumarry, Is.EqualTo(correctSummary));
+            // assert
+            Assert.That(sumary, Is.EqualTo(correctSummary));
         }
 
         [Test]
         public void GetSummaryOfGamesOrderByTotalScoreIfEqualScoreOrderByMostRecently()
         {
+            // act
             CreateMatches();
             string summaryMatches = wcsb.getSummary();
             string correctOrderSummary = "Uruguay 6 - Italy 6 \r\n";
@@ -117,13 +124,17 @@ namespace WorldCupScoreBoardTests
             correctOrderSummary += "Argentina 3 - Australia 1 \r\n";
             correctOrderSummary += "Germany 2 - France 2 \r\n";
 
+            // assert
             Assert.That(summaryMatches, Is.EqualTo(correctOrderSummary));
         }
         [Test]
         public void CanGetMatchFromId()
         {
+            // act
             int matchId = wcsb.startMatch("Mexico", "Canada");
             Match matchObtained = wcsb.getMatchFromId(matchId);
+            
+            // assert
             Assert.That(matchObtained, Is.Not.Null);
             Assert.That(matchObtained.HomeTeamName, Is.EqualTo("Mexico"));
             Assert.That(matchObtained.AwayTeamName, Is.EqualTo("Canada"));

@@ -6,7 +6,7 @@ namespace WorldCupScoreBoardLibrary
 {
     public class WCScoreBoard
     {
-        public Dictionary<int, Match> matchesDictionary { get; set; }
+        private Dictionary<int, Match> matchesDictionary;
         private int matchId;
 
         public WCScoreBoard()

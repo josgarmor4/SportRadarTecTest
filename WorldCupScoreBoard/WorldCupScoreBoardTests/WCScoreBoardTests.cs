@@ -119,6 +119,16 @@ namespace WorldCupScoreBoardTests
 
             Assert.That(summaryMatches, Is.EqualTo(correctOrderSummary));
         }
+        [Test]
+        public void CanGetMatchFromId()
+        {
+            int matchId = wcsb.startMatch("Mexico", "Canada");
+            Match matchObtained = wcsb.getMatchFromId(matchId);
+            Assert.That(matchObtained, Is.Not.Null);
+            Assert.That(matchObtained.HomeTeamName, Is.EqualTo("Mexico"));
+            Assert.That(matchObtained.AwayTeamName, Is.EqualTo("Canada"));
+        }
+
 
         private void CreateMatches()
         {

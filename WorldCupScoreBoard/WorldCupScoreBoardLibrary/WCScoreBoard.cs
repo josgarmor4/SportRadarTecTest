@@ -78,5 +78,10 @@ namespace WorldCupScoreBoardLibrary
             }
             return matchesSummary;
         }
+
+        public Match getMatchFromId(int matchId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -100,7 +100,7 @@ namespace WorldCupScoreBoardTests
         public void GetSummaryOfGames()
         {
             int matchId = wcsb.startMatch("Mexico", "Canada");
-            string correctSummary = "Mexico 0 - Canada 0 \r\n";            
+            string correctSummary = "Mexico 0 - Canada 0 \r\n";
             string sumarry = wcsb.getSummary();
 
             Assert.That(sumarry, Is.EqualTo(correctSummary));
@@ -129,6 +129,12 @@ namespace WorldCupScoreBoardTests
             Assert.That(matchObtained.AwayTeamName, Is.EqualTo("Canada"));
         }
 
+        [TestCase(10)]
+        public void CanGetMathFromIdReturnExceptionIfIdNotExists(int matchId)
+        {
+            // assert
+            Assert.Throws<ArgumentOutOfRangeException>(() => wcsb.getMatchFromId(matchId));
+        }
 
         private void CreateMatches()
         {

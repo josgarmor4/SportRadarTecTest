@@ -44,7 +44,7 @@ namespace WorldCupScoreBoardLibrary
             {
                 throw new ArgumentException("Id don't exists");
             }
-                                
+
         }
 
         public void updateMatch(int matchId, int homeScore, int awayScore)
@@ -55,7 +55,7 @@ namespace WorldCupScoreBoardLibrary
             {
                 throw new ArgumentException("Match don't exits");
             }
-            if(homeScore < 0 || awayScore < 0)
+            if (homeScore < 0 || awayScore < 0)
             {
                 throw new ArgumentOutOfRangeException("Match score can't be negative");
             }
@@ -68,10 +68,10 @@ namespace WorldCupScoreBoardLibrary
             string matchesSummary = "";
             List<Match> matches = matchesDictionary.OrderByDescending(O => O.Value.HomeTeamScore + O.Value.AwayTeamScore)
                              .ThenByDescending(THO => THO.Key)
-                             .ToDictionary(x => x.Key, x=> x.Value)
+                             .ToDictionary(x => x.Key, x => x.Value)
                              .Values
                              .ToList();
-            
+
             foreach (Match match in matches)
             {
                 matchesSummary += match.toString();
@@ -81,7 +81,9 @@ namespace WorldCupScoreBoardLibrary
 
         public Match getMatchFromId(int matchId)
         {
-            throw new NotImplementedException();
+            Match match;
+            matchesDictionary.TryGetValue(matchId, out match);
+            return match;
         }
     }
 }

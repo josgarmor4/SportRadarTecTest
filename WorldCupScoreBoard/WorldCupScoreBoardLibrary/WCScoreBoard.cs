@@ -82,7 +82,11 @@ namespace WorldCupScoreBoardLibrary
         public Match getMatchFromId(int matchId)
         {
             Match match;
-            matchesDictionary.TryGetValue(matchId, out match);
+            bool canGetMatch = matchesDictionary.TryGetValue(matchId, out match);
+            if (!canGetMatch)
+            {
+                throw new ArgumentOutOfRangeException("Match id don't exists");
+            }
             return match;
         }
     }

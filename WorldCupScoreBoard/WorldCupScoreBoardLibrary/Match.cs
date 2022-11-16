@@ -12,13 +12,20 @@ namespace WorldCupScoreBoardLibrary
         public string AwayTeamName { get; set; }
         public int HomeTeamScore { get; set; }
         public int AwayTeamScore { get; set; }
-        
+
+        //Prevent automatic generation of parameterless constructor
+        private Match()
+        {
+
+        }
+
         public Match(string homeTeamName, string awayTeamName)
         {
             if (string.IsNullOrEmpty(homeTeamName) || string.IsNullOrEmpty(awayTeamName))
             {
                 throw new ArgumentOutOfRangeException("Teams names could not be empty");
             }
+
             else
             {
                 HomeTeamName = homeTeamName;
@@ -28,10 +35,7 @@ namespace WorldCupScoreBoardLibrary
             }
         }
 
-        public string toString()
-        {
-            string sumaryMatch = $"{HomeTeamName} {HomeTeamScore} - {AwayTeamName} {AwayTeamScore} \r\n";
-            return sumaryMatch;
-        }
+        public string toString() => $"{HomeTeamName} {HomeTeamScore} - {AwayTeamName} {AwayTeamScore} \r\n";
+        
     }
 }

@@ -36,11 +36,8 @@ namespace WorldCupScoreBoardLibrary
         }
 
         public void finishMatch(int matchId)
-        {
-            Match match;
-            matchesDictionary.TryGetValue(matchId, out match);
-
-            if (match != null)
+        {            
+            if (matchesDictionary.ContainsKey(matchId))
             {
                 matchesDictionary.Remove(matchId);
             }
